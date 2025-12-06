@@ -38,7 +38,7 @@ export class Snowfall {
 
   animateSnowfall(
     canvasRef: React.RefObject<HTMLCanvasElement | null>,
-    snowflakesRef: React.RefObject<Snowflake[]>,
+    snowflakesRef: React.RefObject<Snowflake[]>
   ) {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -86,8 +86,5 @@ export class Snowfall {
       ctx.restore();
       return true;
     });
-
-    
-    requestAnimationFrame(() => this.animateSnowfall(canvasRef, snowflakesRef));
   }
 }
