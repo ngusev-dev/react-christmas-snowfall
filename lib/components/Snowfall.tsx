@@ -29,8 +29,8 @@ export function ChristmasSnowfall() {
         positionX: width,
         positionY: height,
         wind: 0,
-        size: 3,
-        speed: 0.7,
+        size: 2,
+        speed: 0.65,
         rotation: 1,
         opacity: 1,
         color: "#4899f5",
@@ -41,7 +41,7 @@ export function ChristmasSnowfall() {
   }, [snowflakesRef, getWindowSize])
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id='christmas-snowfall'>
       <canvas className={styles.canvas} ref={canvasRef} />
     </div>
   )
