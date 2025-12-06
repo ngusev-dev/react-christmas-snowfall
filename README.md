@@ -1,6 +1,8 @@
 # React-Christmas-Snowfall 🎅
 
+
 This plugin adds Christmas snowfall effects to any website.
+ [Live Demo](https://ngusev-dev.github.io/react-christmas-snowfall/)
 
 ### 👨‍💻 Installation
 
