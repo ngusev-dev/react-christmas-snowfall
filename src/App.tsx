@@ -1,6 +1,4 @@
-import {ChristmasSnowfall} from '../dist'
-import '../dist/assets/react-christmas-snowfall.css'
-
+import { ChristmasSnowfall } from '../lib/components/Snowfall';
 import styles from './App.module.css';
 
 function App() {

@@ -30,7 +30,7 @@ export function ChristmasSnowfall() {
         positionY: height,
         wind: 0,
         size: 3,
-        speed: 0.5,
+        speed: 0.7,
         rotation: 1,
         opacity: 1,
         color: "#4899f5",

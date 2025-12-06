@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b ./tsconfig-build.json && vite build",
+    "build-github": "tsc -b && vite build --config ./vite-github.config.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
