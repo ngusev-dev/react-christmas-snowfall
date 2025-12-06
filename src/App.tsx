@@ -1,10 +1,11 @@
+import {ChristmasSnowfall} from '../dist'
+import '../dist/assets/react-christmas-snowfall.css'
 
 import styles from './App.module.css';
 
 function App() {
   return (
     <div className={styles.page}>
-      <button className={styles.button}>Test</button>
       <ChristmasSnowfall />
     </div>
   )
