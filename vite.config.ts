@@ -12,7 +12,6 @@ export default defineConfig({
        tsconfigPath: './tsconfig-build.json'
     })
   ],
-  base: process.env.VITE_BASE_PATH || '/',
   build: {
     copyPublicDir: false,
     lib: {
