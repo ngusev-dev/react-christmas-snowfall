@@ -13,8 +13,8 @@ npm i react-christmas-snowfall
 Next, add `ChristmasSnowfall` component to your page and include `react-christmas-snowfall.css`
 
 ```js
-import { ChristmasSnowfall } from '@react-christmas-snowfall'
-import '@react-christmas-snowfall/assets/react-christmas-snowfall.css'
+import { ChristmasSnowfall } from 'react-christmas-snowfall'
+import 'react-christmas-snowfall/dist/assets/react-christmas-snowfall.css'
 
 import styles from './App.module.css';
 

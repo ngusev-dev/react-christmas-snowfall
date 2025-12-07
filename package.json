@@ -1,9 +1,9 @@
 {
   "name": "react-christmas-snowfall",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
-  "main": "dist/react-christmas-snowfall.js",
+  "main": "dist/index.js",
   "homepage": "https://ngusev-dev.github.io/react-christmas-snowfall/",
   "types": "dist/index.d.ts",
   "files": [
