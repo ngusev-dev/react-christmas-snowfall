@@ -10,7 +10,7 @@ export function ChristmasSnowfall() {
 
   const getWindowSize = useCallback(() => ({
     screenWidth: typeof window !== 'undefined' ? window.innerWidth : 0,
-    screenHeight: typeof window !== 'undefined' ? document.documentElement.scrollHeight : 0,
+    screenHeight: typeof window !== 'undefined' ? window.innerHeight : 0,
   }), []);
 
   useEffect(() => {
@@ -21,13 +21,13 @@ export function ChristmasSnowfall() {
       screenHeight
     );
     snowflakesRef.current = snowfall.create(
-     65, 
+     200, 
       {
-        positionX: screenWidth,
-        positionY: screenHeight / 4,
-        wind: 0,
-        size: 2,
-        speed: 2.5,
+        screenWidth,
+        screenHeight,
+        wind: 3,
+        size: 3,
+        speed: 3,
         rotation: 1,
         opacity: 1,
         color: "#ffffff",

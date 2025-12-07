@@ -1,7 +1,7 @@
 {
   "name": "react-christmas-snowfall",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/react-christmas-snowfall.js",
   "homepage": "https://ngusev-dev.github.io/react-christmas-snowfall/",
@@ -9,7 +9,7 @@
   "files": [
     "dist"
   ],
-  "prepublishOnly": "npm run build",
+  "prepare": "npm run build",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b ./tsconfig-build.json && vite build",
