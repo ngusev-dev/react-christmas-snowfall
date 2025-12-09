@@ -43,7 +43,8 @@ export class Snowfall {
 
   animateSnowfall(
     canvasRef: React.RefObject<HTMLCanvasElement | null>,
-    snowflakesRef: React.RefObject<Snowflake[]>
+    snowflakesRef: React.RefObject<Snowflake[]>,
+    deltaTime: number
   ) {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -58,7 +59,7 @@ export class Snowfall {
 
     for(let index = 0; index < snowflakesRef.current.length; index++) {
       const flake = snowflakesRef.current[index];
-      flake.update(this.screenWidth, this.screenHeight);
+      flake.update(this.screenWidth, this.screenHeight, deltaTime);
 
       ctx.save();
       ctx.translate(flake.positionX, flake.positionY);

@@ -23,7 +23,10 @@ export class Snowflake {
   wind: number;
   appearance: "Circle" | "Snowflake" = 'Circle'
 
-  private swingOffset = Math.random() * Math.PI * 2;
+  private readonly swingOffset = Math.random() * Math.PI * 2;
+  private readonly swingX = Math.sin(this.swingOffset);
+  private readonly maxDelta =  1000 / 30;
+  private readonly fpsMsDelta = 1000 / 60;
 
   constructor(
     init: ISnowflakeInitSettings
@@ -43,11 +46,12 @@ export class Snowflake {
     this.appearance = appearance
   }
 
-  update(screenWidth: number, screenHeight: number) {
-    const swingX = Math.sin(this.swingOffset) * 1;
+  update(screenWidth: number, screenHeight: number, deltaTime: number) {
+    const speedFactor = deltaTime / this.fpsMsDelta;
+    const clampedSpeedFactor = Math.min(speedFactor, this.maxDelta / this.fpsMsDelta);
 
-    this.positionY += this.speed
-    this.positionX = (this.positionX + this.wind + swingX)
+    this.positionY += this.speed * clampedSpeedFactor;
+    this.positionX += (this.wind + this.swingX) * clampedSpeedFactor
 
     if (
       this.positionY > screenHeight + this.size || 
@@ -59,9 +63,10 @@ export class Snowflake {
         this.positionX = Math.floor(Math.random() * (screenWidth + screenWidth + 1)) - screenWidth
       } else if (this.wind < 0) {
         this.positionX = Math.floor(Math.random() * (screenWidth * 2 + 1))
+      } else {
+        this.positionX = Math.random() * screenWidth;
       }
     }
-
   }
 
   renderCircle(ctx: CanvasRenderingContext2D) {
