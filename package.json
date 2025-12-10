@@ -1,7 +1,7 @@
 {
   "name": "react-christmas-snowfall",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
   "homepage": "https://ngusev-dev.github.io/react-christmas-snowfall/",
@@ -38,5 +38,8 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
     "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "@base-ui-components/react": "^1.0.0-rc.0"
   }
 }
