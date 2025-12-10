@@ -1,3 +1,3 @@
 export { ChristmasSnowfall } from './components/Snowfall'
-export * from './domain/snowfall'
-export * from './domain/snowflake'
+export * from './domains/snowfall'
+export * from './domains/snowflake'

@@ -1,9 +1,5 @@
-import { Snowflake, type ISnowflakeInitSettings } from "./snowflake";
-
-export interface ICreateSnowflakeInitSettings extends Omit<ISnowflakeInitSettings, 'id' | 'positionX' | 'positionY'> {
-  screenWidth: number;
-  screenHeight: number
-}
+import { APPEARANCE_TYPE, type ICreateSnowflakeInitSettings } from "../types/snowfall.types";
+import { Snowflake } from "./snowflake";
 
 export class Snowfall {
   snowflakes: Snowflake[] = [];
@@ -16,10 +12,9 @@ export class Snowfall {
   }
 
   create(
-    snowflakeCount: number, 
     snowflakeInitSettings: ICreateSnowflakeInitSettings
   ) {
-    const {screenWidth, screenHeight, wind, size, speed, rotation, opacity, color, appearance} = snowflakeInitSettings;
+    const {screenWidth, screenHeight, wind, size, speed, rotation, opacity, color, appearance, snowflakeCount} = snowflakeInitSettings;
     
     for (let i = 0; i < snowflakeCount; i++) {
       this.snowflakes.push(
@@ -67,10 +62,10 @@ export class Snowfall {
       ctx.globalAlpha = flake.opacity;
 
       switch(flake.appearance) {
-        case "Circle":
+        case APPEARANCE_TYPE.CIRCLE:
           flake.renderCircle(ctx)
           break;
-        case "Snowflake":
+        case APPEARANCE_TYPE.SNOWFLAKE:
           flake.renderSnowflake(ctx);
           break;
       }

@@ -1,9 +1,21 @@
 import { useCallback, useEffect, useRef } from 'react';
 import styles from './snowfall.module.css';
-import { Snowflake } from '../domain/snowflake';
-import { Snowfall } from '../domain/snowfall';
+import { Snowflake } from '../domains/snowflake';
+import { Snowfall } from '../domains/snowfall';
+import { APPEARANCE_TYPE, type IChristmasSnowfallProps } from '../types/snowfall.types';
 
-export function ChristmasSnowfall() {
+export function ChristmasSnowfall(
+    {
+      snowflakeCount = 100,
+      wind = 0,
+      size = 30,
+      speed = 4,
+      rotation = 1,
+      opacity = 1,
+      color = "#ffffff",
+      appearance = APPEARANCE_TYPE.CIRCLE
+    }: IChristmasSnowfallProps
+  ) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const snowflakesRef = useRef<Snowflake[]>([]);
   const rafRef = useRef<number>(0);
@@ -25,17 +37,17 @@ export function ChristmasSnowfall() {
     );
 
     snowflakesRef.current = snowfall.create(
-     200, 
       {
+        snowflakeCount,
         screenWidth,
         screenHeight,
-        wind: 2,
-        size: 2,
-        speed: 2,
-        rotation: 1,
-        opacity: 1,
-        color: "#ffffff",
-        appearance: 'Snowflake'
+        wind,
+        size,
+        speed,
+        rotation,
+        opacity,
+        color,
+        appearance
       });
 
     const animate = () => {
@@ -51,7 +63,7 @@ export function ChristmasSnowfall() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [getWindowSize])
+  }, [appearance, color, getWindowSize, opacity, rotation, size, snowflakeCount, speed, wind])
 
   return (
     <div className={styles.wrapper} id='christmas-snowfall'>

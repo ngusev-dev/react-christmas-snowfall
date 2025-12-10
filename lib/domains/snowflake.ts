@@ -1,15 +1,5 @@
-export interface ISnowflakeInitSettings {
-  id: number,
-  positionX: number,
-  positionY: number,
-  wind: number,
-  size: number, 
-  speed: number, 
-  rotation: number,
-  opacity: number,
-  color: string, 
-  appearance: "Circle" | "Snowflake"
-}
+import type { ISnowflakeInitSettings } from "../types/snowflake.types";
+import type { APPEARANCE_TYPE } from "../types/snowfall.types";
 
 export class Snowflake {
   id: number;
@@ -21,7 +11,7 @@ export class Snowflake {
   speed: number;
   rotation: number;
   wind: number;
-  appearance: "Circle" | "Snowflake" = 'Circle'
+  appearance: keyof typeof APPEARANCE_TYPE 
 
   private readonly swingOffset = Math.random() * Math.PI * 2;
   private readonly swingX = Math.sin(this.swingOffset);
@@ -72,12 +62,12 @@ export class Snowflake {
   renderCircle(ctx: CanvasRenderingContext2D) {
       ctx.beginPath();
       ctx.fillStyle = this.color;
-      ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+      ctx.arc(0, 0, this.size / 6, 0, Math.PI * 2);
       ctx.fill();
   }
 
   renderSnowflake(ctx: CanvasRenderingContext2D) {
-    ctx.font = `${this.size}rem serif`;  
+    ctx.font = `${this.size / 16}rem serif`;  
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = this.color;
