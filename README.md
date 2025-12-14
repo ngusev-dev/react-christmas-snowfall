@@ -28,3 +28,15 @@ function App() {
 
 export default App
 ```
+### 💻 React-Christmas-Snowfall Props
+
+For more flexible configuration, you can use the following props:
+
+| Props | Required | Description |
+|-----------|----------|-------------|
+| `snowflakeCount` | ❌ | Number of snowflakes on the screen | 
+| `wind` | ❌ | Wind direction | 
+| `size` | ❌ | Snowflake size |
+| `speed` | ❌ | The speed of snowflakes falling | 
+| `color` | ❌ | The color of snowflakes | 
+| `appearance` | ❌ | Type of snowflake. `CIRCLE` or `SNOWFLAKE` | 
