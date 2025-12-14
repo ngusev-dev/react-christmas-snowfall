@@ -10,7 +10,6 @@ export function ChristmasSnowfall(
       wind = 0,
       size = 30,
       speed = 4,
-      rotation = 1,
       opacity = 1,
       color = "#ffffff",
       appearance = APPEARANCE_TYPE.CIRCLE
@@ -44,7 +43,6 @@ export function ChristmasSnowfall(
         wind,
         size,
         speed,
-        rotation,
         opacity,
         color,
         appearance
@@ -63,7 +61,7 @@ export function ChristmasSnowfall(
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [appearance, color, getWindowSize, opacity, rotation, size, snowflakeCount, speed, wind])
+  }, [appearance, color, getWindowSize, opacity, size, snowflakeCount, speed, wind])
 
   return (
     <div className={styles.wrapper} id='christmas-snowfall'>

@@ -7,7 +7,6 @@ export interface ISnowflakeInitSettings {
   wind: number,
   size: number, 
   speed: number, 
-  rotation: number,
   opacity: number,
   color: string, 
   appearance: keyof typeof APPEARANCE_TYPE

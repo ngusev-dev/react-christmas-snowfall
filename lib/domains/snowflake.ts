@@ -9,7 +9,6 @@ export class Snowflake {
   color: string = "#fff";
   opacity: number;
   speed: number;
-  rotation: number;
   wind: number;
   appearance: keyof typeof APPEARANCE_TYPE 
 
@@ -21,7 +20,7 @@ export class Snowflake {
   constructor(
     init: ISnowflakeInitSettings
   ) {
-    const {id, positionX, positionY, wind, size, color, opacity, speed, rotation, appearance} = init;
+    const {id, positionX, positionY, wind, size, color, opacity, speed, appearance} = init;
 
     this.id = id;
     this.positionX = positionX;
@@ -32,7 +31,6 @@ export class Snowflake {
     this.color = color;
     this.opacity = opacity;
     this.speed = speed;
-    this.rotation = rotation;
     this.appearance = appearance
   }
 

@@ -14,7 +14,7 @@ export class Snowfall {
   create(
     snowflakeInitSettings: ICreateSnowflakeInitSettings
   ) {
-    const {screenWidth, screenHeight, wind, size, speed, rotation, opacity, color, appearance, snowflakeCount} = snowflakeInitSettings;
+    const {screenWidth, screenHeight, wind, size, speed, opacity, color, appearance, snowflakeCount} = snowflakeInitSettings;
     
     for (let i = 0; i < snowflakeCount; i++) {
       this.snowflakes.push(
@@ -25,7 +25,6 @@ export class Snowfall {
           wind,
           size: Math.random() * size,
           speed: Math.random() * (speed - 0.5 + 1) + 0.5 ,
-          rotation: Math.random() * rotation,
           opacity: Math.random() * opacity,
           color,
           appearance
@@ -58,7 +57,6 @@ export class Snowfall {
 
       ctx.save();
       ctx.translate(flake.positionX, flake.positionY);
-      ctx.rotate((flake.rotation * Math.PI) / 180);
       ctx.globalAlpha = flake.opacity;
 
       switch(flake.appearance) {
