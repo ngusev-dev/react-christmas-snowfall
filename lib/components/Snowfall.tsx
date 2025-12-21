@@ -70,6 +70,16 @@ export function ChristmasSnowfall({
     });
   }, [appearance, color, opacity, size, snowflakeCount, speed, wind]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (snowfallInstance.current) {
+        snowfallInstance.current?.updateScreenSize(window.innerWidth, window.innerHeight);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className={styles.wrapper} id="christmas-snowfall">
       <canvas className={styles.canvas} ref={canvasRef} />

@@ -3,12 +3,11 @@ import { Snowflake } from './snowflake';
 
 export class Snowfall {
   snowflakes: Snowflake[] = [];
-  screenWidth: number;
-  screenHeight: number;
+  screenWidth!: number;
+  screenHeight!: number;
 
   constructor(screenWidth: number, screenHeight: number) {
-    this.screenHeight = screenHeight;
-    this.screenWidth = screenWidth;
+    this.updateScreenSize(screenWidth, screenHeight);
   }
 
   createSnowfall(settings: ISnowflakeInitSettings) {
@@ -19,6 +18,11 @@ export class Snowfall {
     }
 
     return this.snowflakes;
+  }
+
+  updateScreenSize(screenWidth: number, screenHeight: number) {
+    this.screenHeight = screenHeight;
+    this.screenWidth = screenWidth;
   }
 
   updateSnowflakeSettings(snowflakeSettings: ISnowflakeInitSettings) {
