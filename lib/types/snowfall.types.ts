@@ -1,14 +1,12 @@
-import type { ISnowflakeInitSettings } from "./snowflake.types";
+import type { ISnowflakeSettings } from './snowflake.types';
 
-export interface ICreateSnowflakeInitSettings extends Omit<ISnowflakeInitSettings, 'id' | 'positionX' | 'positionY'> {
-  screenWidth: number;
-  screenHeight: number;
+export interface ISnowflakeInitSettings extends Omit<ISnowflakeSettings, 'id' | 'positionX' | 'positionY'> {
   snowflakeCount: number;
 }
 
-export type IChristmasSnowfallProps = Partial<Omit<ICreateSnowflakeInitSettings, "screenWidth" | "screenHeight">>
+export type IChristmasSnowfallProps = Partial<Omit<ISnowflakeInitSettings, 'screenWidth' | 'screenHeight'>>;
 
 export const APPEARANCE_TYPE = {
   CIRCLE: 'CIRCLE',
-  SNOWFLAKE: 'SNOWFLAKE'
+  SNOWFLAKE: 'SNOWFLAKE',
 } as const;

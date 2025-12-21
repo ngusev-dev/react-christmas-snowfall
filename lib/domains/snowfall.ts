@@ -1,5 +1,5 @@
-import { APPEARANCE_TYPE, type ICreateSnowflakeInitSettings } from "../types/snowfall.types";
-import { Snowflake } from "./snowflake";
+import { APPEARANCE_TYPE, type ISnowflakeInitSettings } from '../types/snowfall.types';
+import { Snowflake } from './snowflake';
 
 export class Snowfall {
   snowflakes: Snowflake[] = [];
@@ -7,39 +7,38 @@ export class Snowfall {
   screenHeight: number;
 
   constructor(screenWidth: number, screenHeight: number) {
-    this.screenHeight = screenHeight
-    this.screenWidth = screenWidth
+    this.screenHeight = screenHeight;
+    this.screenWidth = screenWidth;
   }
 
-  create(
-    snowflakeInitSettings: ICreateSnowflakeInitSettings
-  ) {
-    const {screenWidth, screenHeight, wind, size, speed, opacity, color, appearance, snowflakeCount} = snowflakeInitSettings;
-    
-    for (let i = 0; i < snowflakeCount; i++) {
-      this.snowflakes.push(
-        new Snowflake( {
-          id: i,
-          positionX: Math.random() * screenWidth,
-          positionY: Math.random() * screenHeight * -1,
-          wind,
-          size: Math.random() * size,
-          speed: Math.random() * (speed - 0.5 + 1) + 0.5 ,
-          opacity: Math.random() * opacity,
-          color,
-          appearance
-         }) 
-      );
+  createSnowfall(settings: ISnowflakeInitSettings) {
+    const { snowflakeCount } = settings;
+
+    for (let id = 0; id < snowflakeCount; id++) {
+      this.snowflakes.push(new Snowflake(settings, this.screenWidth, this.screenHeight));
     }
 
     return this.snowflakes;
   }
 
-  animateSnowfall(
-    canvasRef: React.RefObject<HTMLCanvasElement | null>,
-    snowflakesRef: React.RefObject<Snowflake[]>,
-    deltaTime: number
-  ) {
+  updateSnowflakeSettings(snowflakeSettings: ISnowflakeInitSettings) {
+    const targetCount = snowflakeSettings.snowflakeCount;
+    const currentCount = this.snowflakes.length;
+
+    if (targetCount > currentCount) {
+      for (let i = currentCount; i < targetCount; i++) {
+        this.snowflakes.push(new Snowflake(snowflakeSettings, this.screenWidth, this.screenHeight));
+      }
+    } else if (targetCount < currentCount) {
+      this.snowflakes.length = targetCount;
+    }
+
+    this.snowflakes.forEach((flake) => {
+      flake.updateSettings(snowflakeSettings);
+    });
+  }
+
+  animateSnowfall(canvasRef: React.RefObject<HTMLCanvasElement | null>, deltaTime: number) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -51,17 +50,18 @@ export class Snowfall {
 
     ctx.clearRect(0, 0, this.screenWidth, this.screenHeight);
 
-    for(let index = 0; index < snowflakesRef.current.length; index++) {
-      const flake = snowflakesRef.current[index];
+    for (let index = 0; index < this.snowflakes.length; index++) {
+      const flake = this.snowflakes[index];
+
       flake.update(this.screenWidth, this.screenHeight, deltaTime);
 
       ctx.save();
       ctx.translate(flake.positionX, flake.positionY);
       ctx.globalAlpha = flake.opacity;
 
-      switch(flake.appearance) {
+      switch (flake.appearance) {
         case APPEARANCE_TYPE.CIRCLE:
-          flake.renderCircle(ctx)
+          flake.renderCircle(ctx);
           break;
         case APPEARANCE_TYPE.SNOWFLAKE:
           flake.renderSnowflake(ctx);
